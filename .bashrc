@@ -1,5 +1,5 @@
 
-# usage: cat .bashrc >> ~/.bashrc && source ~/.bashrc
+# usage: cp /etc/skel/.bashrc ~/ && cat .bashrc >> ~/.bashrc && source ~/.bashrc
 # start of modify
 # modify by aggresss
 
@@ -11,16 +11,16 @@ alias fdc='find . -name "*" |xargs grep -sin'
 # switch proxy on-off
 proxy-cfg(){
   if [ $1 == 1 ];then
-    url="http://127.0.0.1:1080"
-    export proxy=${url}
-    export http_proxy=${url}
-    export https_proxy=${url}
-    export ftp_proxy=${url}   
-  elif [$1 == 0];then
+    proxy_url="http://127.0.0.1:1080"
+    export proxy=${proxy_url}
+    export http_proxy=${proxy_url}
+    export https_proxy=${proxy_url}
+    export ftp_proxy=${proxy_url}   
+  elif [ $1 == 0 ];then
     unset proxy http_proxy https_proxy ftp_proxy
     fi
 }
-export -f proxy_cfg
+export -f proxy-cfg
 
 # modify for docker
 docker-inside(){
