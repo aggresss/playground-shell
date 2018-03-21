@@ -1,2 +1,0 @@
-#!/bin/bash
-echo -e "\e[0;3$1m"
