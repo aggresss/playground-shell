@@ -34,7 +34,7 @@ fi
 if [ "X_$2" != "X_" ];then
     target_port=$2
 else
-    args_from_file
+    exit 1
 fi
 
 target="${target_ip} ${target_port}"
