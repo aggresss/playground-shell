@@ -1,5 +1,5 @@
 #!/bin/bash
-docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
+docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash"
 
 # or attach the ~/.bashrc
 #docker-inside(){
