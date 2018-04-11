@@ -22,6 +22,10 @@ proxy-cfg(){
 }
 export -f proxy-cfg
 
+# Shadowsocks
+alias ssl='sslocal -c /etc/shadowsocks-client.json -d'
+alias sss='ssserver -c /etc/shadowsocks-server.json -d'
+
 # modify for docker
 docker-inside(){
   docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
@@ -40,5 +44,11 @@ colorv(){
   echo -e "\e[0;3${1}m"
 }
 export -f colorv
+
+# environmnet for Golang
+export GOROOT="/usr/local/go/go1.10.1"                                                                                                                                    
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
 
 # end of modify
