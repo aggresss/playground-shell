@@ -1,12 +1,15 @@
 #!/bin/bash
-if [ $1 = 'v0' ]; then
+
+if [ "X_$1" = "X_" ]; then
+	xrandr
+elif [ $1 = 'v0' ]; then
 	xrandr --output VGA1 --off
 elif [ $1 = 'v1' ]; then
 	xrandr --output VGA1 --left-of LVDS1 --auto
 elif [ $1 = 'v2' ]; then
 	xrandr --output VGA1 --right-of LVDS1 --auto
 elif [ $1 = 'd0' ]; then
-	xrandr --output DP1 --off
+	xrandr --output DP1 --off --output LVDS1 --auto
 elif [ $1 = 'd1' ]; then
 	xrandr --output DP1 --left-of LVDS1 --auto
 elif [ $1 = 'd2' ]; then
