@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # toggle close the lid operation on and off
+# initial run: sudo echo "#HandleLidSwitch=ignore" >> /etc/systemd/logind.conf
 
 if [ $1 = 0 ];then
     # execute disable
