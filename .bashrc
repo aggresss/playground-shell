@@ -15,7 +15,7 @@ proxy-cfg(){
     export proxy=${proxy_url}
     export http_proxy=${proxy_url}
     export https_proxy=${proxy_url}
-    export ftp_proxy=${proxy_url}   
+    export ftp_proxy=${proxy_url}
   elif [ $1 == 0 ];then
     unset proxy http_proxy https_proxy ftp_proxy
     fi
@@ -39,14 +39,25 @@ docker-inspect(){
 export -f docker-inspect
 
 # modify bash font color value
-# usage: cv 0-6 RGY BMC 
+# usage: cv 0-6 RGY BMC
 colorv(){
   echo -e "\e[0;3${1}m"
 }
 export -f colorv
 
+# set $PWD append to $GOPATH
+gopath-pwd(){
+  if [[ $GOPATH =~ .*$PWD.* ]];then
+    echo "currnet dir is already in GOPATH"
+  else
+    export GOPATH=$GOPATH:$PWD
+    echo "fininsh setting $PWD in GOPATH"
+  fi
+}
+export -f gopath-pwd
+
 # environmnet for Golang
-export GOROOT="/usr/local/go/go1.10.1"                                                                                                                                    
+export GOROOT="/usr/local/go/go1.10.1"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
