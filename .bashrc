@@ -8,6 +8,12 @@ alias fdf='find . -name "*" |grep -sin'
 # find file content
 alias fdc='find . -name "*" |xargs grep -sin'
 
+# short for cd ..
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 # switch proxy on-off
 proxy-cfg(){
   if [ $1 == 1 ];then
