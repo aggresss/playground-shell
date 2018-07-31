@@ -8,6 +8,13 @@ alias fdf='find . -name "*" |grep -sin'
 # find file content
 alias fdc='find . -name "*" |xargs grep -sin'
 
+# alias for some application special open
+alias calc='gnome-calculator'
+alias gterm='gnome-terminal'
+alias em='emacs -nw'
+alias cbp='chromium-browser --proxy-server=socks5://127.0.0.1:10080'
+alias wine='env LANG=zh_CN.UTF8 wine'
+
 # short for cd ..
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -29,8 +36,8 @@ proxy-cfg(){
 export -f proxy-cfg
 
 # Shadowsocks
-alias ssl='sslocal -c /etc/shadowsocks-client.json -d'
-alias sss='ssserver -c /etc/shadowsocks-server.json -d'
+alias ssl='sslocal -c /etc/shadowsocks/config-client.json -d'
+alias sss='ssserver -c /etc/shadowsocks/config-server.json -d'
 
 # modify for docker
 docker-inside(){
@@ -63,7 +70,7 @@ gopath-pwd(){
 export -f gopath-pwd
 
 # environmnet for Golang
-export GOROOT="/usr/local/go/go1.10.1"
+export GOROOT="$HOME/.local/go"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
