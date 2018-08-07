@@ -71,8 +71,14 @@ export -f gopath-pwd
 
 # environmnet for Golang
 export GOROOT="$HOME/.local/go"
+if [ -d "$GOROOT/bin" ] ; then
+    export PATH="$GOROOT/bin:$PATH"
+fi
+
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+if [ -d "$GOPATH/bin" ] ; then
+    export PATH="$GOPATH/bin:$PATH"
+fi
 
 
 # end of modify
