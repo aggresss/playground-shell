@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# linux shell color support.
+RED="\\033[31m"
+GREEN="\\033[32m"
+YELLOW="\\033[33m"
+BLACK="\\033[0m"
+
 if [ "X_$1" = "X_" ]; then
 	xrandr
 elif [ $1 = 'v0' ]; then
@@ -15,6 +21,6 @@ elif [ $1 = 'd1' ]; then
 elif [ $1 = 'd2' ]; then
 	xrandr --output DP1 --right-of LVDS1 --auto
 else
-	echo -e "\e[31m please input args  v0,v1,v2  or  h0,h1,h2. \e[0m"
+	echo -e "${RED} please input args  v0,v1,v2  or  h0,h1,h2. ${BLACK}"
 fi
 #end
