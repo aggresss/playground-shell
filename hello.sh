@@ -22,7 +22,7 @@ int main()
     return 0;
 }
 END
-        echo "/tmp/hello.c"
+        echo -e "${GREEN}/tmp/hello.c${NORMAL}"
         #gcc -v /tmp/hello.c 2> /tmp/hello.c.txt
         #gcc -v /tmp/hello.c
         #rm -rf /tmp/hello.c* a.out
@@ -36,7 +36,7 @@ int main()
     return 0;
 }
 END
-        echo "/tmp/hello.cpp"
+        echo -e "${GREEN}/tmp/hello.cpp${NORMAL}"
         #g++ -v /tmp/hello.cpp 2> /tmp/hello.cpp.txt
         #g++ -v /tmp/hello.cpp
         #rm -rf /tmp/hello.cpp* a.out
@@ -49,16 +49,16 @@ func main() {
     fmt.Println("Hello World!")
 }
 END
-        echo "/tmp/hello.go"
+        echo -e "${GREEN}/tmp/hello.go${NORMAL}"
         #go build -o a.out /tmp/hello.go
         #rm -rf /tmp/hello.go a.out
     ;;
-    python)
+    py)
         cat << END > /tmp/hello.py
 # -*- coding: UTF-8 -*-
 print('Hello World!')
 END
-        echo "/tmp/hello.py"
+        echo -e "${GREEN}/tmp/hello.py${NORMAL}"
         #python /tmp/hello.py
         #rm -rf /tmp/hello.py
     ;;
