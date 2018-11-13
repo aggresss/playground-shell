@@ -7,7 +7,7 @@ case ${HELLO_TYPE} in
 #include <stdio.h>
 int main()
 {
-    printf("hello world\n");
+    printf("Hello World!\n");
     return 0;
 }
 END
@@ -20,13 +20,32 @@ END
 #include <iostream>
 int main()
 {
-    std::cout << "hello world" << std::endl;
+    std::cout << "Hello World!" << std::endl;
     return 0;
 }
 END
         #g++ -v /tmp/hello.cpp 2> /tmp/hello.cpp.txt
         #g++ -v /tmp/hello.cpp
         #rm -rf /tmp/hello.cpp* a.out
+    ;;
+    go)
+        cat << END > /tmp/hello.go
+package main
+import "fmt"
+func main() {
+    fmt.Println("Hello World!")
+}
+END
+        #go build -o a.out /tmp/hello.go
+        #rm -rf /tmp/hello.go a.out
+    ;;
+    python)
+        cat << END > /tmp/hello.py
+# -*- coding: UTF-8 -*-
+print('Hello World!')
+END
+        #python /tmp/hello.py
+        #rm -rf /tmp/hello.py
     ;;
     *)
 
