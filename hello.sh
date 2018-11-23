@@ -18,9 +18,10 @@ case ${HELLO_TYPE} in
 #include <stdio.h>
 int main()
 {
-    printf("Hello World!\n");
+    printf("Hello, World!\n");
     return 0;
 }
+
 END
         echo "/tmp/hello.c"
         #gcc -v /tmp/hello.c 2> /tmp/hello.c.txt
@@ -32,9 +33,10 @@ END
 #include <iostream>
 int main()
 {
-    std::cout << "Hello World!" << std::endl;
+    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
+
 END
         echo "/tmp/hello.cpp"
         #g++ -v /tmp/hello.cpp 2> /tmp/hello.cpp.txt
@@ -46,8 +48,9 @@ END
 package main
 import "fmt"
 func main() {
-    fmt.Println("Hello World!")
+    fmt.Println("Hello, World!")
 }
+
 END
         echo "/tmp/hello.go"
         #go build -o a.out /tmp/hello.go
@@ -56,11 +59,23 @@ END
     py)
         cat << END > /tmp/hello.py
 # -*- coding: UTF-8 -*-
-print('Hello World!')
+print('Hello, World!')
+
 END
         echo "/tmp/hello.py"
         #python /tmp/hello.py
         #rm -rf /tmp/hello.py
+    ;;
+    sh)
+        cat << END > /tmp/hello.sh
+#!/bin/bash
+echo "\$(echo "Hello, World!")"
+
+END
+        echo "/tmp/hello.sh"
+        chmod +x /tmp/hello.sh
+        #bash /tmp/hello.sh
+        #rm -rf /tmp/hello.sh
     ;;
     *)
         echo -e "${RED}Nothing to do!${NORMAL}"
