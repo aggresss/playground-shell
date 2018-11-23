@@ -69,6 +69,9 @@ END
     sh)
         cat << END > /tmp/hello.sh
 #!/bin/bash
+set -euvo pipefail
+shopt -s nullglob
+
 echo "\$(echo "Hello, World!")"
 
 END
