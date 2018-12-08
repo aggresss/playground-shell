@@ -18,6 +18,6 @@ if [ $1 -ge 0 -a $1 -le 9 ]; then
 	sudo chmod 777 /sys/class/backlight/intel_backlight/brightness
 	echo $bv> /sys/class/backlight/intel_backlight/brightness
 else
-	echo -e "${RED} please input args from 0 to 9. ${BLACK}"
+	echo -e "${RED} please input args from 0 to 9. ${NORMAL}"
 fi
 #tlp-stat |grep "temp"
