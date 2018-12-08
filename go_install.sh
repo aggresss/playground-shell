@@ -35,7 +35,6 @@ function down_load
         return 2
     fi
 
-    # !!! ONLY use in go_install
     if [ -d $2 ]; then
         rm -rf $2
     fi
