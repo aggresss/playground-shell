@@ -13,8 +13,7 @@ NORMAL="\\033[m"
 
 if [[ $(uname) = "Linux" ]]; then
     if [ -f /etc/apt/source.list.origin ]; then
-        sudo rm -rf /etc/apt/sources.list
-        sudo cp -rf /etc/apt/sources.list.origin /etc/apt/source.list
+        sudo mv -f /etc/apt/sources.list.origin /etc/apt/source.list
         echo -e "${YELLOW}Reset mirror file success${NORMAL}"
     else
         DISTRIBUTION=$(cat /etc/issue | awk '{print $1}')
