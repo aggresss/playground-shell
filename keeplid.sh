@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Control lattop power when lid open and close
 
 # linux shell color support.

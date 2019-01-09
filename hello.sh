@@ -68,7 +68,7 @@ END
     ;;
     sh)
         cat << END > /tmp/hello.sh
-#!/bin/bash
+#!/usr/bin/env bash
 set -euxvo pipefail
 shopt -s nullglob
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # scan mac address in the local area network
 # $1 for network address
 

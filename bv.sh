@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #thinkapd t450 笔记本屏幕亮度调节
 # max value 852
 

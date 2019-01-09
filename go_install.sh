@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # environment file for install golang package
 set -uv
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # linux shell color support.
 BLACK="\\033[30m"

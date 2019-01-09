@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # environment file for cache golang package in repo
 set -uv
 set -x

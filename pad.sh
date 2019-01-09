@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # toggle touchpad on and off
 
 # linux shell color support.

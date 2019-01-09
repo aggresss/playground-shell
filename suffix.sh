@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # change file suffix name for batch
 
 # linux shell color support.

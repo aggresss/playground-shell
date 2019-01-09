@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # random mac address
 
 # linux shell color support.

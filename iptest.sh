@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # test ip:port is open
 # usage: iptest ip port
 # or create ip-port.txt file each line format: "ip port"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Change default runlevel on Debian systemd based system
 
 # linux shell color support.
