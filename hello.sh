@@ -80,6 +80,19 @@ END
         #bash /tmp/hello.sh
         #rm -rf /tmp/hello.sh
     ;;
+    pl)
+        cat << END > /tmp/hello.pl
+#!/usr/bin/env perl
+
+print "Hello, Wrold!\n"
+
+END
+        echo "/tmp/hello.pl"
+        chmod +x /tmp/hello.pl
+        #perl /tmp/hello.pl
+        #rm -rf /tmp/hello.pl
+
+    ;;
     *)
         echo -e "${RED}Nothing to do!${NORMAL}"
     ;;
