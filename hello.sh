@@ -72,8 +72,12 @@ END
 set -euxvo pipefail
 shopt -s nullglob
 
-echo "\$(echo "Hello, World!")"
+function hello()
+{
+    echo "\$(echo "Hello, World!")"
+}
 
+hello $@
 END
         echo "/tmp/hello.sh"
         chmod +x /tmp/hello.sh
