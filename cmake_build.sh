@@ -35,7 +35,7 @@ function cmake_build()
     local toolchain_triplet=$(${toolchain} -dumpmachine)
     local toolchain_basename=$(basename ${toolchain})
     local toolchain_prefix
-    if [ "${toolchain_basename}" = "gcc" ]; then
+    if [ "${toolchain_basename}" != "gcc" ]; then
         toolchain_prefix=${toolchain_basename%-gcc}
         # Create toolchain.cmake file
         local cmake_toolchain_file=$(mktemp)
@@ -58,7 +58,7 @@ END
     rm -rf ${build_dir}
     mkdir -p ${build_dir}
     cd ${build_dir}
-    if [ "${toolchain_basename}" != "gcc" ]; then
+    if [ "${toolchain_basename}" = "gcc" ]; then
         cmake .. $@
     else
         cmake .. -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} $@
