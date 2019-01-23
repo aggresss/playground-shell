@@ -62,7 +62,7 @@ function autotools_build()
     make install
 
     # Clean up
-    echo -e "Successful build on ${GREEN}${prefix_dir}${NORMAL}"
+    echo -e "\nSuccessful build on ${GREEN}${prefix_dir}${NORMAL}\n"
 }
 
 autotools_build $@

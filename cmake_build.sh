@@ -66,7 +66,7 @@ END
 
     # Clean up
     rm -rf ${cmake_toolchain_file}
-    echo -e "Successful build on ${GREEN}${build_dir}${NORMAL}"
+    echo -e "\nSuccessful build on ${GREEN}${build_dir}${NORMAL}\n"
 }
 
 cmake_build $@
