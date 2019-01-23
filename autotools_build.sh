@@ -42,7 +42,7 @@ function autotools_build()
 
     # Build
     if [ ! -f configure ]; then
-        if [-f autogen.sh ]; then
+        if [ -f autogen.sh ]; then
             ./autogen.sh
         elif [ -f bootstrap ]; then
             ./bootstrap
