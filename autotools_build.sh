@@ -41,6 +41,17 @@ function autotools_build()
     rm -rf ${prefix_dir}
 
     # Build
+    if [ ! -f configure ]; then
+        if [-f autogen.sh ]; then
+            ./autogen.sh
+        elif [ -f bootstrap ]; then
+            ./bootstrap
+        elif [ -f buildconf ]; then
+            ./buildconf
+        else
+            autoreconf -vif
+        fi
+    fi
     ./configure --host=${toolchain_host} --prefix=${prefix_dir} $@
     make
     make install
