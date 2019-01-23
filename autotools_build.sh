@@ -34,13 +34,13 @@ function autotools_build()
     # Analysis toolchain
     local toolchain_triplet=$(${toolchain} -dumpmachine)
     local toolchain_basename=$(basename ${toolchain})
-    local toolchain_prefix=${toolchain_basename%gcc}
-    # Launch cmake compile
-    local toolchain_host=${toolchain_prefix%-}
-    local prefix_dir="${PWD}/output/${toolchain_triplet}"
-    rm -rf ${prefix_dir}
+    if [ "${toolchain_basename}" != gcc ]; then
+        local toolchain_prefix=${toolchain_basename%-gcc}
+    fi
 
     # Build
+    local prefix_dir="${PWD}/output/${toolchain_triplet}"
+    rm -rf ${prefix_dir}
     if [ ! -f configure ]; then
         if [ -f autogen.sh ]; then
             ./autogen.sh
@@ -52,7 +52,12 @@ function autotools_build()
             autoreconf -vif
         fi
     fi
-    ./configure --host=${toolchain_host} --prefix=${prefix_dir} $@
+
+    if [ "${toolchain_basename}" != gcc ]; then
+        ./configure --host=${toolchain_prefix} --prefix=${prefix_dir} $@
+    else
+        ./configure --prefix=${prefix_dir} $@
+    fi
     make
     make install
 
