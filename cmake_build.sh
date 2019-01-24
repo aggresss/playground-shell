@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
-# ${DEFAULT_CC}
-# ${DEFAULT_CXX}
+# ${default_cc}
+# ${default_cxx}
 # ${DEFAULT_TOOLCHAIN_PREFIX}
 
 # linux shell color support.
