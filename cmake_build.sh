@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
-# ${DEFAULT_TOOLCHAIN_PREFIX}
+
+# Some influential environment variables:
+# DEFAULT_TOOLCHAIN_PREFIX
+# CC
+# CXX
 
 # linux shell color support.
 BLACK="\\033[30m"
