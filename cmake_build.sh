@@ -49,7 +49,6 @@ function cmake_build()
         read -p "Input toolchain index: " toolchain_index
         if [ ${toolchain_index} -le ${index_range} ] 2>/dev/null; then
             toolchain=$(eval ${find_toolchain_cmd} | sed -n "${toolchain_index}p" | xargs basename)
-
             export DEFAULT_TOOLCHAIN_PREFIX=$(echo "${toolchain}" | sed -e "s/-${default_cc}$//")
         else
             echo -e "${RED}\nIndex error!${NORMAL}\n"

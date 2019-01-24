@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+# Some influential environment variables:
+# DEFAULT_TOOLCHAIN_PREFIX
+# CC
+# CXX
+
 # linux shell color support.
 BLACK="\\033[30m"
 RED="\\033[31m"
@@ -14,29 +19,47 @@ NORMAL="\\033[m"
 
 function autotools_build()
 {
-    # Search and display toolchain from ${PATH}
-    local find_toolchain_cmd='eval find {${PATH//:/,}} -name *gcc'
-    echo -e "${GREEN}"
-    eval ${find_toolchain_cmd} | cat -n
-    echo -e "${NORMAL}"
-    local index_range=$(eval ${find_toolchain_cmd} | sed -n '$=')
-
-    # Select toolchain
-    local toolchain_index
-    read -p "Input toolchain index: " toolchain_index
-    if [ ${toolchain_index} -le ${index_range} ] 2>/dev/null; then
-        local toolchain=$(eval ${find_toolchain_cmd} | sed -n "${toolchain_index}p")
+    # evalueate default CC and CXX
+    local default_cc
+    if [ ${CC:-NOCONFIG} = "NOCONFIG" ]; then
+        default_cc="gcc"
     else
-        echo -e "${RED}\nIndex error!${NORMAL}\n"
-        return 1
+        default_cc=${CC}
+    fi
+    local default_cxx
+    if [ ${CXX:-NOCONFIG} = "NOCONFIG" ]; then
+        default_cxx="g++"
+    else
+        default_cxx=${CXX}
+    fi
+
+    # evalueate default toolchain prefix
+    local toolchain
+    if [ "${DEFAULT_TOOLCHAIN_PREFIX:-NOCONFIG}" = "NOCONFIG" ]; then
+
+        # Search and display toolchain from ${PATH}
+        local find_toolchain_cmd='eval find {${PATH//:/,}} -name *${default_cc}'
+        echo -e "${GREEN}"
+        eval ${find_toolchain_cmd} | cat -n
+        echo -e "${NORMAL}"
+        local index_range=$(eval ${find_toolchain_cmd} | sed -n '$=')
+
+        # Select toolchain
+        local toolchain_index
+        read -p "Input toolchain index: " toolchain_index
+        if [ ${toolchain_index} -le ${index_range} ] 2>/dev/null; then
+            toolchain=$(eval ${find_toolchain_cmd} | sed -n "${toolchain_index}p" | xargs basename)
+            export DEFAULT_TOOLCHAIN_PREFIX=$(echo "${toolchain}" | sed -e "s/-${default_cc}$//")
+        else
+            echo -e "${RED}\nIndex error!${NORMAL}\n"
+            return 1
+        fi
+    else
+            toolchain=${DEFAULT_TOOLCHAIN_PREFIX}-${default_cc}
     fi
 
     # Analysis toolchain
     local toolchain_triplet=$(${toolchain} -dumpmachine)
-    local toolchain_basename=$(basename ${toolchain})
-    if [ "${toolchain_basename}" != gcc ]; then
-        local toolchain_prefix=${toolchain_basename%-gcc}
-    fi
 
     # Build
     local prefix_dir="${PWD}/output/${toolchain_triplet}"
