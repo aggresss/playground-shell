@@ -78,20 +78,27 @@ END
     fi
 
     # Launch cmake compile
-    local build_dir="build-${toolchain_triplet}"
+    local build_dir="${PWD}/build-${toolchain_triplet}"
+    local output_dir="${PWD}/output-${toolchain_triplet}"
     rm -rf ${build_dir}
+    rm -rf ${output_dir}
     mkdir -p ${build_dir}
     cd ${build_dir}
     if [ "${toolchain}" = "${default_cc}" ]; then
-        cmake .. $@
+        cmake .. -DCMAKE_INSTALL_PREFIX=${output_dir} \
+            $@
     else
-        cmake .. -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} $@
+        cmake .. -DCMAKE_INSTALL_PREFIX=${output_dir} \
+            -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} \
+            $@
     fi
-    make
+    make \
+        && echo -e "\nSuccessful build on ${GREEN}${build_dir}${NORMAL}\n"
+    make install \
+        && echo -e "\nSuccessful install on ${GREEN}${output_dir}${NORMAL}\n"
 
     # Clean up
     rm -rf ${cmake_toolchain_file}
-    echo -e "\nSuccessful build on ${GREEN}${build_dir}${NORMAL}\n"
 }
 
 cmake_build $@
