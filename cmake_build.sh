@@ -78,8 +78,13 @@ END
     fi
 
     # Launch cmake compile
-    local build_dir="${PWD}/build-${toolchain_triplet}"
-    local output_dir="${PWD}/output-${toolchain_triplet}"
+    local top_dir="${PWD}"
+    if [ ! -f ${top_dir}/CMakeLists.txt ]; then
+        echo -e "${RED}\nNOT A CMAKE PROJECT.\n${NORMAL}"
+        return 1
+    fi
+    local build_dir="${top_dir}/build-${toolchain_triplet}"
+    local output_dir="${top_dir}/output-${toolchain_triplet}"
     rm -rf ${build_dir}
     rm -rf ${output_dir}
     mkdir -p ${build_dir}
@@ -92,10 +97,14 @@ END
             -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} \
             $@
     fi
+
     make \
         && echo -e "\nSuccessful build on ${GREEN}${build_dir}${NORMAL}\n"
-    make install \
-        && echo -e "\nSuccessful install on ${GREEN}${output_dir}${NORMAL}\n"
+
+    if find ${top_dir} -name CMakeLists.txt | xargs grep -iq "INSTALL("; then
+        make install \
+            && echo -e "\nSuccessful install on ${GREEN}${output_dir}${NORMAL}\n"
+    fi
 
     # Clean up
     rm -rf ${cmake_toolchain_file}
