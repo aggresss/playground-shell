@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -e
-# ${default_cc}
-# ${default_cxx}
 # ${DEFAULT_TOOLCHAIN_PREFIX}
 
 # linux shell color support.
@@ -17,37 +15,58 @@ NORMAL="\\033[m"
 
 function cmake_build()
 {
-    # Search and display toolchain from ${PATH}
-    local find_toolchain_cmd='eval find {${PATH//:/,}} -name *gcc'
-    echo -e "${GREEN}"
-    eval ${find_toolchain_cmd} | cat -n
-    echo -e "${NORMAL}"
-    local index_range=$(eval ${find_toolchain_cmd} | sed -n '$=')
-
-    # Select toolchain
-    local toolchain_index
-    read -p "Input toolchain index: " toolchain_index
-    if [ ${toolchain_index} -le ${index_range} ] 2>/dev/null; then
-        local toolchain=$(eval ${find_toolchain_cmd} | sed -n "${toolchain_index}p")
+    # evalueate default CC and CXX
+    local default_cc
+    if [ ${CC:-NOCONFIG} = "NOCONFIG" ]; then
+        default_cc="gcc"
     else
-        echo -e "${RED}\nIndex error!${NORMAL}\n"
-        return 1
+        default_cc=${CC}
+    fi
+    local default_cxx
+    if [ ${CXX:-NOCONFIG} = "NOCONFIG" ]; then
+        default_cxx="g++"
+    else
+        default_cxx=${CXX}
+    fi
+
+    # evalueate default toolchain prefix
+    local toolchain
+    if [ "${DEFAULT_TOOLCHAIN_PREFIX:-NOCONFIG}" = "NOCONFIG" ]; then
+
+        # Search and display toolchain from ${PATH}
+        local find_toolchain_cmd='eval find {${PATH//:/,}} -name *${default_cc}'
+        echo -e "${GREEN}"
+        eval ${find_toolchain_cmd} | cat -n
+        echo -e "${NORMAL}"
+        local index_range=$(eval ${find_toolchain_cmd} | sed -n '$=')
+
+        # Select toolchain
+        local toolchain_index
+        read -p "Input toolchain index: " toolchain_index
+        if [ ${toolchain_index} -le ${index_range} ] 2>/dev/null; then
+            toolchain=$(eval ${find_toolchain_cmd} | sed -n "${toolchain_index}p" | xargs basename)
+
+            export DEFAULT_TOOLCHAIN_PREFIX=$(echo "${toolchain}" | sed -e "s/-${default_cc}$//")
+        else
+            echo -e "${RED}\nIndex error!${NORMAL}\n"
+            return 1
+        fi
+    else
+            toolchain=${DEFAULT_TOOLCHAIN_PREFIX}-${default_cc}
     fi
 
     # Analysis toolchain
     local toolchain_triplet=$(${toolchain} -dumpmachine)
-    local toolchain_basename=$(basename ${toolchain})
 
     # Create toolchain.cmake file
-    if [ "${toolchain_basename}" != "gcc" ]; then
+    if [ "${toolchain}" != "${default_cc}" ]; then
         local cmake_toolchain_file=$(mktemp)
-        local toolchain_prefix=${toolchain_basename%-gcc}
         cat << END > ${cmake_toolchain_file}
 # toolchain.cmake file for ${toolchain_triplet}
 set(CMAKE_SYSTEM_NAME Linux)
-set(TOOLCHAIN_PREFIX ${toolchain_prefix})
-set(CMAKE_C_COMPILER \${TOOLCHAIN_PREFIX}-gcc)
-set(CMAKE_CXX_COMPILER \${TOOLCHAIN_PREFIX}-g++)
+set(TOOLCHAIN_PREFIX ${DEFAULT_TOOLCHAIN_PREFIX})
+set(CMAKE_C_COMPILER \${TOOLCHAIN_PREFIX}-${default_cc})
+set(CMAKE_CXX_COMPILER \${TOOLCHAIN_PREFIX}-${default_cxx})
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
@@ -60,7 +79,7 @@ END
     rm -rf ${build_dir}
     mkdir -p ${build_dir}
     cd ${build_dir}
-    if [ "${toolchain_basename}" = "gcc" ]; then
+    if [ "${toolchain}" = "${default_cc}" ]; then
         cmake .. $@
     else
         cmake .. -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} $@
