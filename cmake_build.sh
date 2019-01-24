@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -e
+# ${DEFAULT_CC}
+# ${DEFAULT_CXX}
+# ${DEFAULT_TOOLCHAIN_PREFIX}
 
 # linux shell color support.
 BLACK="\\033[30m"
