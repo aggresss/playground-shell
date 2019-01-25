@@ -20,18 +20,8 @@ NORMAL="\\033[m"
 function cmake_build()
 {
     # evalueate default CC and CXX
-    local default_cc
-    if [ ${CC:-NOCONFIG} = "NOCONFIG" ]; then
-        default_cc="gcc"
-    else
-        default_cc=${CC}
-    fi
-    local default_cxx
-    if [ ${CXX:-NOCONFIG} = "NOCONFIG" ]; then
-        default_cxx="g++"
-    else
-        default_cxx=${CXX}
-    fi
+    local default_cc=${CC:-gcc}
+    local default_cxx=${CXX:-g++}
 
     # evalueate default toolchain prefix
     local toolchain
