@@ -9,7 +9,10 @@ BLUE="\\033[34m"
 MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
-NORMAL="\\033[m"
+NORMAL="\\033[0m"
+HIGHLIGHT="\\033[1m"
+INVERT="\\033[7m"
+
 
 set ip [lindex $argv 0]
 set username [lindex $argv 1]

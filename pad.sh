@@ -10,7 +10,9 @@ BLUE="\\033[34m"
 MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
-NORMAL="\\033[m"
+NORMAL="\\033[0m"
+HIGHLIGHT="\\033[1m"
+INVERT="\\033[7m"
 
 # capture the Touchpad input id
 id=`xinput |grep TouchPad |awk -F= '{print $2}' |awk '{print $1}'`
