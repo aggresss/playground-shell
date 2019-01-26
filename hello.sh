@@ -10,6 +10,9 @@ MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
 NORMAL="\\033[m"
+HIGHLIGHT="\\033[1m"
+INVERT="\\033[7m"
+
 
 HELLO_TYPE=$1
 case ${HELLO_TYPE} in
@@ -69,8 +72,26 @@ END
     sh)
         cat << END > /tmp/hello.sh
 #!/usr/bin/env bash
-set -euxvo pipefail
-shopt -s nullglob
+# brief line
+set -e
+set -u
+# set -x
+# set -v
+# set -o pipefail
+# shopt -s nullglob
+
+# linux shell color support.
+BLACK="\\\\033[30m"
+RED="\\\\033[31m"
+GREEN="\\\\033[32m"
+YELLOW="\\\\033[33m"
+BLUE="\\\\033[34m"
+MAGENTA="\\\\033[35m"
+CYAN="\\\\033[36m"
+WHITE="\\\\033[37m"
+NORMAL="\\\\033[m"
+HIGHLIGHT="\\\\033[1m"
+INVERT="\\\\033[7m"
 
 function hello()
 {
