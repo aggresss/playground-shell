@@ -19,7 +19,7 @@ case ${HELLO_TYPE} in
     c)
         cat << END > /tmp/hello.c
 #include <stdio.h>
-int main()
+int main(int argc, const char * argv[])
 {
     printf("Hello, World!\n");
     return 0;
