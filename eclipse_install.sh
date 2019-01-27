@@ -2,7 +2,12 @@
 # environment file for install eclipse
 set -e
 
-eclipse_version="2018-12"
+if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
+    eclipse_version="2018-12"
+else
+    eclipse_version=$1
+fi
+
 base_url="https://mirrors.tuna.tsinghua.edu.cn/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}-R"
 
 ###  function for download and extract to assign path ####

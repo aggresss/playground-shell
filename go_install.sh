@@ -6,7 +6,7 @@ set -e
 BASE_URL_1="http://repo.router7.com/go"
 BASE_URL_2="https://dl.google.com/go"
 
-if [ ${1-NoDefine} = "NoDefine" ]; then
+if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
     GO_VERSION="go1.10.5"
 else
     GO_VERSION="go$1"
