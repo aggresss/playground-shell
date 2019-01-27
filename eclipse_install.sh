@@ -1,23 +1,9 @@
 #!/usr/bin/env bash
-# environment file for install golang package
+# environment file for install eclipse
 set -e
 
-# viriable for install
-BASE_URL_1="http://repo.router7.com/go"
-BASE_URL_2="https://dl.google.com/go"
-
-if [ ${1-NoDefine} = "NoDefine" ]; then
-    GO_VERSION="go1.10.5"
-else
-    GO_VERSION="go$1"
-fi
-
-CUR_VERSION=$(go version | awk '{print $3}')
-
-if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
-    echo "Current Go version is already update."
-    exit 0
-fi
+eclipse_version="2018-12"
+base_url="https://mirrors.tuna.tsinghua.edu.cn/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}-R"
 
 ###  function for download and extract to assign path ####
 # $1 download URL
@@ -48,13 +34,13 @@ function down_load
 
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
-    Darwin)
-        down_load ${BASE_URL_1}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go \
-        || down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go
-    ;;
     Linux)
-        down_load ${BASE_URL_1}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go \
-        || down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go
+        down_load "${base_url}-linux-gtk-x86_64.tar.gz" ${HOME}/.local/eclipse && \
+            rm -rf ${HOME}/bin/eclipse && \
+            ln -s ${HOME}/.local/eclipse/eclipse ${HOME}/bin/eclipse
+    ;;
+    Darwin)
+        curl -OL "${base_url}-macosx-cocoa-x86_64.dmg" ${HOME}/Downloads/
     ;;
     *)
         echo "Operating system not support."
