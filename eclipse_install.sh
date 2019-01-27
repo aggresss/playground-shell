@@ -40,12 +40,17 @@ function down_load
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
     Linux)
-        down_load "${base_url}-linux-gtk-x86_64.tar.gz" ${HOME}/.local/eclipse && \
+        down_url="${base_url}-linux-gtk-x86_64.tar.gz"
+        down_load ${down_url} ${HOME}/.local/eclipse && \
             rm -rf ${HOME}/bin/eclipse && \
             ln -s ${HOME}/.local/eclipse/eclipse ${HOME}/bin/eclipse
     ;;
     Darwin)
-        curl -OL "${base_url}-macosx-cocoa-x86_64.dmg" ${HOME}/Downloads/
+        down_url="${base_url}-macosx-cocoa-x86_64.dmg"
+        down_file=`echo "${down_url}" | awk -F "/" '{print $NF}'`
+        cd ${HOME}/Downloads
+        rm -rf ${down_file}
+        wget ${down_url} && open ${down_file}
     ;;
     *)
         echo "Operating system not support."
