@@ -37,6 +37,8 @@ function down_load
     fi
 }
 
+killall eclipse || echo "eclipse already closed."
+
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
     Linux)
@@ -48,9 +50,22 @@ if [ $(uname -m) = "x86_64" ]; then
     Darwin)
         down_url="${base_url}-macosx-cocoa-x86_64.dmg"
         down_file=`echo "${down_url}" | awk -F "/" '{print $NF}'`
-        cd ${HOME}/Downloads
-        rm -rf ${down_file}
-        wget ${down_url} && open ${down_file}
+        down_file_path=${HOME}/Downloads/${down_file}
+        rm -rf ${down_file_path}
+        wget -P ${HOME}/Downloads/ ${down_url}
+        if [ -d /Volumes/Eclipse ]; then
+            hdiutil detach /Volumes/Eclipse
+        fi
+        hdiutil attach ${down_file_path}
+        sudo rm -rf /Applications/Eclipse.app
+        sudo cp -r /Volumes/Eclipse/Eclipse.app /Applications/
+        hdiutil detach /Volumes/Eclipse
+        rm -rf ${down_file_path}
+        sudo gsed -r \
+            -e 's/^-Xms.*/-Xms512m/' \
+            -e 's/^-Xmx.*/-Xmx2048m/' \
+            -e '/smallFonts/d' \
+            -i /Applications/Eclipse.app/Contents/Eclipse/eclipse.ini
     ;;
     *)
         echo "Operating system not support."
