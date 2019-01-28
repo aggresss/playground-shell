@@ -3,7 +3,7 @@
 set -e
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    eclipse_version="2018-09"
+    eclipse_version="photon"
 else
     eclipse_version=$1
 fi
