@@ -12,12 +12,12 @@ mirror="http://mirrors.neusoft.edu.cn"
 mirror_bak="https://mirrors.tuna.tsinghua.edu.cn/"
 
 if [ "${eclipse_version}" = "2018-09" ]; then
-    is_R=""
+    has_R=""
 else
-    is_R="-R"
+    has_R="-R"
 fi
 
-base_url="${mirror}/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}${is_R}"
+base_url="${mirror}/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}${has_R}"
 
 ###  function for download and extract to assign path ####
 # $1 download URL
@@ -47,8 +47,8 @@ function down_load
 }
 
 # Cleanup process
-if ps aux | grep eclipse | grep -vq grep; then
-    eval `killall eclipse`
+if ps aux | grep eclipse | grep -v $0 | grep -vq grep; then
+    killall eclipse
 fi
 # Cleanup temp file
 rm -rf ${HOME}/.eclipse/
