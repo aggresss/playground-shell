@@ -3,16 +3,21 @@
 set -e
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    eclipse_version="photon"
+    eclipse_version="2018-09"
 else
     eclipse_version=$1
 fi
 
 mirror="http://mirrors.neusoft.edu.cn"
-# mirror="https://mirrors.tuna.tsinghua.edu.cn/"
-base_url="${mirror}/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}-R"
+mirror_bak="https://mirrors.tuna.tsinghua.edu.cn/"
 
+if [ "${eclipse_version}" != "2018-09" ]; then
+    is_R="-R"
+else
+    is_R=""
+fi
 
+base_url="${mirror}/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}${is_R}"
 
 ###  function for download and extract to assign path ####
 # $1 download URL
