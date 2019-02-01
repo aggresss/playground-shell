@@ -19,7 +19,7 @@ backlight_path="/sys/class/backlight/intel_backlight"
 
 if [ -f ${backlight_path}/max_brightness ]; then
     max_value=$(cat ${backlight_path}/max_brightness)
-    echo $max_value
+    # echo $max_value
 else
     echo -e "${RED}NO SUPPORT ON THIS PLATFORM.${NORMAL}"
     exit 1
@@ -30,7 +30,7 @@ if [ $1 -ge 0 -a $1 -le 10 ]; then
     if [ $bv -eq 0 ]; then
         bv=$(($max_value/30))
     fi
-    echo $bv
+    # echo $bv
 	sudo chmod 777 ${backlight_path}/brightness
 	echo $bv> ${backlight_path}/brightness
 else
