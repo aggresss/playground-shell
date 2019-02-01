@@ -11,10 +11,10 @@ fi
 mirror="http://mirrors.neusoft.edu.cn"
 mirror_bak="https://mirrors.tuna.tsinghua.edu.cn/"
 
-if [ "${eclipse_version}" != "2018-09" ]; then
-    is_R="-R"
-else
+if [ "${eclipse_version}" = "2018-09" ]; then
     is_R=""
+else
+    is_R="-R"
 fi
 
 base_url="${mirror}/eclipse/technology/epp/downloads/release/${eclipse_version}/R/eclipse-cpp-${eclipse_version}${is_R}"
