@@ -46,9 +46,12 @@ function down_load
     fi
 }
 
+# Cleanup process
 if ps aux | grep eclipse | grep -vq grep; then
     eval `killall eclipse`
 fi
+# Cleanup temp file
+rm -rf ${HOME}/.eclipse/
 
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
