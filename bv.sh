@@ -25,16 +25,23 @@ else
     exit 1
 fi
 
-if [ $1 -ge 0 -a $1 -le 10 ]; then
-    bv=$(($max_value/10*$1))
+if [ "x$1" = "x" ]; then
+    bv=$(cat ${backlight_path}/brightness)
+    max_bv=$(cat ${backlight_path}/max_brightness)
+    echo -e "${HIGHLIGHT}${GREEN}$((${bv}*100/${max_bv}))/100${NORMAL}"
+    exit 0
+fi
+
+if [ $1 -ge 1 -a $1 -le 100 ]; then
+    bv=$(($max_value/100*$1))
     if [ $bv -eq 0 ]; then
-        bv=$(($max_value/30))
+        bv=$(($max_value*100))
     fi
     # echo $bv
 	sudo chmod 777 ${backlight_path}/brightness
 	echo $bv> ${backlight_path}/brightness
 else
-	echo -e "${RED} please input args from 0 to 10. ${NORMAL}"
+	echo -e "${HIGHLIGHT}${RED} Please input args from 1 to 100. ${NORMAL}"
 fi
 #tlp-stat |grep "temp"
 
