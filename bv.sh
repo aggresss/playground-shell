@@ -34,9 +34,6 @@ fi
 
 if [ $1 -ge 1 -a $1 -le 100 ]; then
     bv=$(($max_value/100*$1))
-    if [ $bv -eq 0 ]; then
-        bv=$(($max_value*100))
-    fi
     # echo $bv
 	sudo chmod 777 ${backlight_path}/brightness
 	echo $bv> ${backlight_path}/brightness
