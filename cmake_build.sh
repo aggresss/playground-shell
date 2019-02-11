@@ -82,10 +82,10 @@ END
     mkdir -p ${build_dir}
     cd ${build_dir}
     if [ "${toolchain}" = "${default_cc}" ]; then
-        cmake .. -DCMAKE_INSTALL_PREFIX=${output_dir} \
+        cmake ../../ -DCMAKE_INSTALL_PREFIX=${output_dir} \
             $@
     else
-        cmake .. -DCMAKE_INSTALL_PREFIX=${output_dir} \
+        cmake ../../ -DCMAKE_INSTALL_PREFIX=${output_dir} \
             -DCMAKE_TOOLCHAIN_FILE=${cmake_toolchain_file} \
             $@
     fi
