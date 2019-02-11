@@ -75,8 +75,8 @@ END
         echo -e "${RED}\nNOT A CMAKE PROJECT.\n${NORMAL}"
         return 1
     fi
-    local build_dir="${top_dir}/build-${toolchain_triplet}"
-    local output_dir="${top_dir}/output-${toolchain_triplet}"
+    local build_dir="${top_dir}/build/${toolchain_triplet}"
+    local output_dir="${top_dir}/output/${toolchain_triplet}"
     rm -rf ${build_dir}
     rm -rf ${output_dir}
     mkdir -p ${build_dir}
