@@ -93,7 +93,7 @@ END
     make \
         && echo -e "\nSuccessful build on ${GREEN}${build_dir}${NORMAL}\n"
 
-    if find ${top_dir} -name CMakeLists.txt | xargs grep -iq "INSTALL("; then
+    if cat Makefile | grep -q -e "^install:"; then
         make install \
             && echo -e "\nSuccessful install on ${GREEN}${output_dir}${NORMAL}\n"
     fi
