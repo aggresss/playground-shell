@@ -118,6 +118,18 @@ END
         #rm -rf /tmp/hello.pl
 
     ;;
+    cmake)
+        cat << END > /tmp/CMakeLists.txt
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+project(HELLO C)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+file(WRITE \${CMAKE_BINARY_DIR}/main.c "#include <stdio.h>\nint main(void){printf(\"Hello, World!\\\\n\");return 0;}\n")
+add_executable(main main.c)
+install(TARGETS main RUNTIME DESTINATION bin)
+
+END
+        echo "/tmp/CMakeLists.txt"
+    ;;
     *)
         echo -e "${RED}Nothing to do!${NORMAL}"
     ;;
