@@ -98,7 +98,7 @@ function hello()
     echo "\$(echo "Hello, World!")"
 }
 
-hello $@
+hello \$@
 END
         echo "/tmp/hello.sh"
         chmod +x /tmp/hello.sh
