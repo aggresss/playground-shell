@@ -12,7 +12,7 @@ MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
 NORMAL="\\033[0m"
-HIGHLIGHT="\\033[1m"
+LIGHT="\\033[1m"
 INVERT="\\033[7m"
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
@@ -61,7 +61,7 @@ function down_load
 
 # Cleanup process
 if ps aux | grep eclipse | grep -v $0 | grep -vq grep; then
-    echo -e "${HIGHLIGHT}${YELLOW} WARNNING!!! CLOSE ECLIPSE AND SAVE eclipse-workspace.${NORMAL}"
+    echo -e "${LIGHT}${YELLOW} WARNNING!!! CLOSE ECLIPSE AND SAVE eclipse-workspace.${NORMAL}"
     exit 1
 fi
 # Cleanup temp file

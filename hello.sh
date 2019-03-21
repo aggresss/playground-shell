@@ -10,7 +10,7 @@ MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
 NORMAL="\\033[m"
-HIGHLIGHT="\\033[1m"
+LIGHT="\\033[1m"
 INVERT="\\033[7m"
 
 
@@ -91,7 +91,7 @@ MAGENTA="\\\\033[35m"
 CYAN="\\\\033[36m"
 WHITE="\\\\033[37m"
 NORMAL="\\\\033[m"
-HIGHLIGHT="\\\\033[1m"
+LIGHT="\\\\033[1m"
 INVERT="\\\\033[7m"
 
 function hello()

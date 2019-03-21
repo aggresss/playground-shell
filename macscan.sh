@@ -12,7 +12,7 @@ MAGENTA="\\033[35m"
 CYAN="\\033[36m"
 WHITE="\\033[37m"
 NORMAL="\\033[0m"
-HIGHLIGHT="\\033[1m"
+LIGHT="\\033[1m"
 INVERT="\\033[7m"
 
 target="10.2.0.0/22"
