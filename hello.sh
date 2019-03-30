@@ -60,6 +60,18 @@ END
         #go build -o a.out /tmp/hello.go
         #rm -rf /tmp/hello.go a.out
     ;;
+    rs)
+        cat << END > /tmp/hello.go
+fn main() {
+    println!("Hello, world!");
+}
+
+END
+        echo "/tmp/hello.rs"
+        #go rustc /tmp/hello.rs
+        #rm -rf /tmp/hello.rs /tmp/hello
+
+    ;;
     py)
         cat << END > /tmp/hello.py
 # -*- coding: UTF-8 -*-
@@ -133,7 +145,7 @@ END
     ;;
     *)
         echo -e "${GREEN}Support Lang:"
-        echo -e "  c\n  cpp\n  go\n  rust\n  py\n  sh\n  pl\n${NORMAL}"
+        echo -e "  c\n  cpp\n  go\n  rs\n  py\n  sh\n  pl\n${NORMAL}"
     ;;
 esac
 
