@@ -61,14 +61,14 @@ END
         #rm -rf /tmp/hello.go a.out
     ;;
     rs)
-        cat << END > /tmp/hello.go
+        cat << END > /tmp/hello.rs
 fn main() {
     println!("Hello, world!");
 }
 
 END
         echo "/tmp/hello.rs"
-        #go rustc /tmp/hello.rs
+        #rustc /tmp/hello.rs
         #rm -rf /tmp/hello.rs /tmp/hello
 
     ;;
