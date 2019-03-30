@@ -132,7 +132,8 @@ END
         echo "/tmp/CMakeLists.txt"
     ;;
     *)
-        echo -e "${RED}Nothing to do!${NORMAL}"
+        echo -e "${GREEN}Support Lang:"
+        echo -e "  c\n  cpp\n  go\n  rust\n  py\n  sh\n  pl\n${NORMAL}"
     ;;
 esac
 
