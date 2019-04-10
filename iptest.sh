@@ -20,9 +20,9 @@ function nc_test()
 {
     nc -w 3 -z $1 $2 > /dev/null 2>&1
     if [ $? -eq 0 ];then
-        echo -e "$1:$2 -${GREEN} OK ${BLACK}"
+        echo -e "$1:$2 -${GREEN} OK ${NORMAL}"
     else
-        echo -e "$1:$2 -${RED} Fail ${BLACK}"
+        echo -e "$1:$2 -${RED} Fail ${NORMAL}"
     fi
 }
 
