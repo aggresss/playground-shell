@@ -19,10 +19,20 @@ case ${HELLO_TYPE} in
     c)
         cat << END > /tmp/hello.c
 #include <stdio.h>
+#include <signal.h>
+
+int g_stop = 0;
+
+static void handleInterrupt(int sig) {
+    g_stop = 1;
+}
 
 int main(int argc, const char * argv[])
 {
+    signal(SIGINT, handleInterrupt);
     printf("Hello, World!\n");
+    while(!g_stop) {
+    }
     return 0;
 }
 
