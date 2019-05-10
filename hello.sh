@@ -23,7 +23,8 @@ case ${HELLO_TYPE} in
 
 int interrupted = 0;
 
-static void handleInterrupt(int sig) {
+static void handleInterrupt(int sig)
+{
     interrupted = 1;
 }
 
