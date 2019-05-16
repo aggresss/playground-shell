@@ -30,7 +30,10 @@ static void handleInterrupt(int sig)
 
 int main(int argc, const char * argv[])
 {
-    signal(SIGINT, handleInterrupt);
+    (void)signal(SIGINT, handleInterrupt);
+    (void)signal(SIGALRM, handleInterrupt);
+    (void)signal(SIGTERM, handleInterrupt);
+
     printf("Hello, World!\n");
     while(!interrupted) {
     }
