@@ -46,6 +46,34 @@ END
         #gcc -v /tmp/hello.c
         #rm -rf /tmp/hello.c* a.out
     ;;
+    h)
+
+        cat << END > /tmp/hello.h
+/* License */
+
+#ifndef HELLO_H
+#define HELLO_H
+
+/* Includes */
+
+/* Public defines */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Public structures */
+
+/* Function declarations */
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* HELLO_H */
+
+END
+        echo "/tmp/hello.h"
+    ;;
     cpp)
         cat << END > /tmp/hello.cpp
 #include <iostream>
