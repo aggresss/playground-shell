@@ -60,7 +60,7 @@ END
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 /* Public structures */
 
@@ -68,7 +68,7 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 
 #endif /* HELLO_H */
 
