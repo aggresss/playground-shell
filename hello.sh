@@ -69,6 +69,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
 #endif /* HELLO_H */
 
 END
