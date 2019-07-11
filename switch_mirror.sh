@@ -22,9 +22,7 @@ if [[ $(uname) = "Linux" ]]; then
         case ${DISTRIBUTION} in
             Ubuntu)
                 sudo cp -f /etc/apt/sources.list /etc/apt/sources.list.origin
-                sudo sed -i 's/cn.archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list
-                sudo sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list
-                sudo sed -i 's/security.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list
+                sudo sed -i 's/http.*ubuntu.com/http:\/\/mirrors.aliyun.com/g' /etc/apt/sources.list
                 echo -e "${GREEN}Alternate ubuntu mirror to aliyun${NORMAL}"
             ;;
             Debian)
