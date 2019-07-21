@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # hello test for various kinds of language
 
 # linux shell color support.
