@@ -29,6 +29,6 @@ function update_file()
     fi
 }
 
-WALLPAPER_DIR="${HOME}/Pictures/Wallpaper"
-mkdir -p ${WALLPAPER_DIR}
-update_file http://repo.router7.com/pictures/winter_fog.jpg ${WALLPAPER_DIR}/default.jpg
+TARGET_DIR="${HOME}/Pictures/Wallpaper"
+mkdir -p ${TARGET_DIR}
+update_file http://repo.router7.com/pictures/winter_fog.jpg ${TARGET_DIR}/default.jpg
