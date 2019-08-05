@@ -16,7 +16,7 @@ INVERT="\\033[7m"
 
 if [ $1 = 0 ];then
     # execute disable
-    xmodmap -e "pointer = 1 25 3 4 5 6 7 2 9 10"
+    xmodmap -e "pointer = 1 10 3 4 5 6 7 8 9 2"
 fi
 
 if [ $1 = 1 ];then
