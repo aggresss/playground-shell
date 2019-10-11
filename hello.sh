@@ -22,7 +22,7 @@ case ${HELLO_TYPE} in
 #include <stdio.h>
 #include <signal.h>
 
-int interrupted = 0;
+static int interrupted = 0;
 
 static void handleInterrupt(int sig)
 {
