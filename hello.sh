@@ -32,8 +32,8 @@ static void handleInterrupt(int sig)
 int main(int argc, const char * argv[])
 {
     (void)signal(SIGINT, handleInterrupt);
-    (void)signal(SIGALRM, handleInterrupt);
     (void)signal(SIGTERM, handleInterrupt);
+    (void)signal(SIGKILL, handleInterrupt);
 
     printf("Hello, World!\n");
     while(!interrupted) {
