@@ -202,6 +202,24 @@ END
     echo "/tmp/hello.js"
     chmod +x /tmp/hello.js
     ;;
+    html)
+        cat << END > /tmp/hello.html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, World!</title>
+</head>
+<body>
+<script>
+console.log('Hello, World!')
+</script>
+</body>
+</html>
+
+END
+    echo "/tmp/hello.html"
+    ;;
     *)
         echo -e "${GREEN}Support Lang:"
         echo -e "  c\n  cpp\n  go\n  rs\n  py\n  sh\n  pl\n${NORMAL}"
