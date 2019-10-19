@@ -207,12 +207,12 @@ END
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hello, World!</title>
+  <meta charset="UTF-8">
+  <title>Hello, World!</title>
 </head>
 <body>
 <script>
-    console.log('Hello, World!')
+  console.log('Hello, World!')
 </script>
 </body>
 </html>
