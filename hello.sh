@@ -187,6 +187,13 @@ install(TARGETS main RUNTIME DESTINATION bin)
 END
         echo "/tmp/CMakeLists.txt"
     ;;
+    make)
+        cat << END > /tmp/Makefile
+all:
+	@echo "Hello, World!"
+
+END
+    ;;
     nodejs)
         cat << END > /tmp/hello.js
 #!/usr/bin/env node
