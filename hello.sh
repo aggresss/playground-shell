@@ -189,8 +189,12 @@ END
     ;;
     make)
         cat << END > /tmp/Makefile
+ifeq (\$(OUTPUT), )
+    OUTPUT:=Hello, World!
+endif
+
 all:
-	@echo "Hello, World!"
+	@echo \$(OUTPUT)
 
 END
     ;;
