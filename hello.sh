@@ -233,7 +233,7 @@ END
     ;;
     *)
         echo -e "${GREEN}Support Lang:"
-        echo -e "  c\n  cpp\n  go\n  rs\n  py\n  sh\n  pl\n${NORMAL}"
+        echo -e "  c\n  h\n  cpp\n  go\n  rs\n  py\n  sh\n  pl\n  cmake\n  make\n  nodejs\n  html\n${NORMAL}"
     ;;
 esac
 
