@@ -12,11 +12,13 @@ else
     GO_VERSION="go$1"
 fi
 
-CUR_VERSION=$(go version | awk '{print $3}')
-
-if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
-    echo "Current Go version is already update."
-    exit 0
+command go >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    CUR_VERSION=$(go version | awk '{print $3}')
+    if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
+        echo "Current Go version is already update."
+        exit 0
+    fi
 fi
 
 ###  function for download and extract to assign path ####

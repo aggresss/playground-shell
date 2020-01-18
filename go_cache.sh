@@ -5,7 +5,7 @@ set -x
 
 BASE_URL="https://dl.google.com/go"
 if [ ${1-NoDefine} = "NoDefine" ]; then
-    GO_VERSION="1.10.5"
+    GO_VERSION="1.12.15"
 else
     GO_VERSION="$1"
 fi
