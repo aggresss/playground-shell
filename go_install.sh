@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # environment file for install golang package
-set -e
 
 # viriable for install
 BASE_URL_1="http://repo.router7.com/go"
@@ -12,7 +11,7 @@ else
     GO_VERSION="go$1"
 fi
 
-command go >/dev/null 2>&1
+command go > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     CUR_VERSION=$(go version | awk '{print $3}')
     if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
