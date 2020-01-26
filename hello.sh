@@ -222,9 +222,10 @@ END
   <title>Hello, World!</title>
 </head>
 <body>
-<script>
-  console.log('Hello, World!')
-</script>
+  <h1>Hello, World!</h1>
+  <script>
+    console.log('Hello, World!')
+  </script>
 </body>
 </html>
 
