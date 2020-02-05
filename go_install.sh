@@ -6,7 +6,7 @@ BASE_URL_1="http://repo.router7.com/go"
 BASE_URL_2="https://dl.google.com/go"
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    GO_VERSION="go1.12.15"
+    GO_VERSION="go1.13.7"
 else
     GO_VERSION="go$1"
 fi
