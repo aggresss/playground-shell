@@ -94,7 +94,9 @@ END
     go)
         cat << END > /tmp/hello.go
 package main
+
 import "fmt"
+
 func main() {
     fmt.Println("Hello, World!")
 }
