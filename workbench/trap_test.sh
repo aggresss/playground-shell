@@ -2,7 +2,7 @@
 
 # test trap command
 trap "echo 'Sorry! I have trapped Ctrl-C'" SIGINT
-trap "echo 'OK! exit.'" 0
+trap "echo 'OK! exit.'" EXIT
 
 echo This is a test script
 
