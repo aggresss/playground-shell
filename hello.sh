@@ -94,7 +94,9 @@ END
     go)
         cat << END > /tmp/hello.go
 package main
+
 import "fmt"
+
 func main() {
     fmt.Println("Hello, World!")
 }
@@ -217,15 +219,16 @@ END
         cat << END > /tmp/hello.html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Hello, World!</title>
-</head>
-<body>
-<script>
-  console.log('Hello, World!')
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello, World!</title>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <script>
+      console.log('Hello, World!')
+    </script>
+  </body>
 </html>
 
 END
