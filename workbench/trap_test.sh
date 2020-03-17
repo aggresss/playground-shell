@@ -2,6 +2,7 @@
 
 # test trap command
 trap "echo 'Sorry! I have trapped Ctrl-C'" SIGINT
+trap "echo 'OK! exit.'" 0
 
 echo This is a test script
 
@@ -14,3 +15,4 @@ do
 done
 
 echo The end.
+
