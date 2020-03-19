@@ -208,7 +208,7 @@ const http = require('http');
 const port = process.env.PORT || 8080;
 
 (async function() {
-  http.createServer(function (req, res) {
+  http.createServer(async (req, res) => {
     res.writeHead(200, {
       "Content-Type": "text/plain",
       "Access-Control-Allow-Origin": "*"
