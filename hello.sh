@@ -205,6 +205,7 @@ END
 #!/usr/bin/env node
 
 const http = require('http');
+const port = process.env.PORT || 8080;
 
 (async function() {
   http.createServer(function (req, res) {
@@ -213,8 +214,8 @@ const http = require('http');
       "Access-Control-Allow-Origin": "*"
       });
     res.end('Hello, World!\n');
-  }).listen(8080, "0.0.0.0");
-  console.log('Server running at http://:localhost:8080/');
+  }).listen(port, "0.0.0.0");
+  console.log(\`Server running at http://:localhost:\${port}/\`);
 })();
 
 END
