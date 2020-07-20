@@ -2,11 +2,10 @@
 # environment file for install golang package
 
 # viriable for install
-BASE_URL_1="http://repo.router7.com/go"
 BASE_URL_2="https://dl.google.com/go"
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    GO_VERSION="go1.13.12"
+    GO_VERSION="go1.13.14"
 else
     GO_VERSION="go$1"
 fi
@@ -50,12 +49,10 @@ function down_load
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
     Darwin)
-        down_load ${BASE_URL_1}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go \
-        || down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go
+        down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go
     ;;
     Linux)
-        down_load ${BASE_URL_1}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go \
-        || down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go
+        down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go
     ;;
     *)
         echo "Operating system not support."
