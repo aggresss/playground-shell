@@ -5,7 +5,7 @@
 BASE_URL_2="https://dl.google.com/go"
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    GO_VERSION="go1.14.9"
+    GO_VERSION="go1.14.13"
 else
     GO_VERSION="go$1"
 fi
