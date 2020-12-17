@@ -1,4 +1,4 @@
 # .gitignore for playground-bash
 
 /docker/certs/
-
+/tmp/
