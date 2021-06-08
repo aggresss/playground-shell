@@ -46,13 +46,19 @@ function down_load
     fi
 }
 
+if [ ${GOROOT:-NOCONFIG} = "NOCONFIG" ]; then
+    INSTALL_DIR=${HOME}/.local/go
+else
+    INSTALL_DIR="${GOROOT}"
+fi
+
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
     Darwin)
-        down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${HOME}/.local/go
+        down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${INSTALL_DIR}
     ;;
     Linux)
-        down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${HOME}/.local/go
+        down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${INSTALL_DIR}
     ;;
     *)
         echo "Operating system not support."
