@@ -69,4 +69,3 @@ else
     echo "Machine architecture no support."
 
 fi
-
