@@ -9,7 +9,6 @@ declare -a ARGS=( \
     "-foo bar" \
     )
 
-PREARGS=""
 for ARG in ${ARGS[@]}
 do
     PREARGS="$PREARGS $ARG"
