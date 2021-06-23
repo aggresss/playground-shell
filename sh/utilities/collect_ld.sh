@@ -30,7 +30,7 @@ if [ -z "${LIB_DIR}" ]; then
     LIB_DIR=${PWD}/collect_lib
 fi
 
-if [ ! -f ${LIB_DIR} ]; then
+if [ ! -d ${LIB_DIR} ]; then
     mkdir -p ${LIB_DIR}
 fi
 
