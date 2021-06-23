@@ -41,7 +41,7 @@ DEP=`${LDD_COMMAND} -v ${TARGET} | grep ' => /' | sed -r -e 's/^(.*)=> (.*)$/\2/
 for D in ${DEP}
 do
     if [ -e $D ]; then
-        cp -f $D ${LIB_DIR}/$(basename ${D})
+        cp -vf $D ${LIB_DIR}/$(basename ${D})
     else
         >&2 echo "ERROR: $D not exist"
     fi
