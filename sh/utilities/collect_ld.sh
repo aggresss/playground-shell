@@ -3,7 +3,6 @@
 # Collect target elf file so file by ldd
 #  objdump -p /path/to/program | grep NEEDED
 #  LD_LIBRARY_PATH=./collect_lib ./collect_lib ld-linux.so /path/to/program
-set -e
 
 function show_usage()
 {
