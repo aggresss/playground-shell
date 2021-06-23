@@ -37,7 +37,7 @@ fi
 TARGET=$1
 LDD_COMMAND=`which ldd`
 
-DEP=`${LDD_COMMAND} -v ${TARGET} | grep '=>' | sed -r -e 's/^(.*)=> (.*)$/\2/' | awk '{print $1}' | sort | uniq`
+DEP=`${LDD_COMMAND} -v ${TARGET} | grep ' => /' | sed -r -e 's/^(.*)=> (.*)$/\2/' | awk '{print $1}' | sort | uniq`
 
 for D in ${DEP}
 do
