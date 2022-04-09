@@ -5,4 +5,5 @@ Reference guide containing syntax and examples for the most prevalent computing 
 ## Reference
 
 - https://ss64.com/
+- https://ss64.com/nt/syntax-variables.html
 
