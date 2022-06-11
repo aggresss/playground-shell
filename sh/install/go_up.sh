@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# environment file for install golang package
+# Bash file for golang update
+# Author: @aggresss
 
 # viriable for install
-BASE_URL_2="https://dl.google.com/go"
+BASE_URL="https://golang.google.cn/dl"
 
 if [ ${1:-NOCONFIG} = "NOCONFIG" ]; then
-    GO_VERSION="go1.15.11"
+    GO_VERSION=$(curl -q -s -L 'https://golang.google.cn/VERSION?m=text')
 else
     GO_VERSION="go$1"
 fi
 
-command go > /dev/null 2>&1
-if [ $? -eq 0 ]; then
+if [ $(command -v go >/dev/null; echo $?) -eq 0 ]; then
     CUR_VERSION=$(go version | awk '{print $3}')
     if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
         echo "Current Go version is already update."
@@ -22,11 +22,10 @@ fi
 ###  function for download and extract to assign path ####
 # $1 download URL
 # $2 local path
-function down_load
-{
-    local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
+function down_load {
+    local down_file=$(echo "$1" | awk -F "/" '{print $NF}')
     local file_ext=${down_file##*.}
-    if [ $(curl -I -o /dev/null -s -w %{http_code} $1) != 200 ]; then
+    if [ $(curl -I -o /dev/null -s -w %{http_code} $1) -ge 400 ]; then
         echo "Query $1 not exist."
         return 1
     fi
@@ -55,14 +54,14 @@ fi
 if [ $(uname -m) = "x86_64" ]; then
     case $(uname) in
     Darwin)
-        down_load ${BASE_URL_2}/${GO_VERSION}.darwin-amd64.tar.gz ${INSTALL_DIR}
-    ;;
+        down_load ${BASE_URL}/${GO_VERSION}.darwin-amd64.tar.gz ${INSTALL_DIR}
+        ;;
     Linux)
-        down_load ${BASE_URL_2}/${GO_VERSION}.linux-amd64.tar.gz ${INSTALL_DIR}
-    ;;
+        down_load ${BASE_URL}/${GO_VERSION}.linux-amd64.tar.gz ${INSTALL_DIR}
+        ;;
     *)
         echo "Operating system not support."
-    ;;
+        ;;
     esac
 
 else
