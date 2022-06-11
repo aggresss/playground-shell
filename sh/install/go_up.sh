@@ -14,8 +14,10 @@ fi
 if [ $(command -v go >/dev/null; echo $?) -eq 0 ]; then
     CUR_VERSION=$(go version | awk '{print $3}')
     if [ ${GO_VERSION} = ${CUR_VERSION} ]; then
-        echo "Current Go version is already update."
+        echo -e "\nVersion ${CUR_VERSION} is already update\n"
         exit 0
+    else
+         echo -e "\nUpdate version to ${GO_VERSION}\n"
     fi
 fi
 
