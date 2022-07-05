@@ -53,20 +53,30 @@ else
     INSTALL_DIR="${GOROOT}"
 fi
 
-if [ $(uname -m) = "x86_64" ]; then
-    case $(uname) in
+case $(uname) in
     Darwin)
-        down_load ${BASE_URL}/${GO_VERSION}.darwin-amd64.tar.gz ${INSTALL_DIR}
+        OS="darwin"
         ;;
     Linux)
-        down_load ${BASE_URL}/${GO_VERSION}.linux-amd64.tar.gz ${INSTALL_DIR}
+        OS="linux"
         ;;
     *)
         echo "Operating system not support."
+        exit 1
         ;;
-    esac
+esac
 
-else
-    echo "Machine architecture no support."
+case $(uname -m) in
+    x86_64)
+        ARCH="amd64"
+        ;;
+    arm64)
+        ARCH="arm64"
+        ;;
+    *)
+        echo "Machine architecture no support."
+        exit 1
+        ;;
+esac
 
-fi
+down_load ${BASE_URL}/${GO_VERSION}.${OS}-${ARCH}.tar.gz ${INSTALL_DIR}
