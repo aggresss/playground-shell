@@ -16,13 +16,16 @@ declare -a ARRAY=( \
     "windows arm64 -arm64.exe" \
     )
 
+set -x
+
 for A in "${ARRAY[@]}"
 do
     declare -a RECORD=(${A})
     GOOS_=${RECORD[0]}
     GOARCH_=${RECORD[1]}
     SUFFIX_=${RECORD[2]}
-    set -x
+
     CGO_ENABLED=0 GOOS=${GOOS_} GOARCH=${GOARCH_} go build -o ${1}${SUFFIX_} $2
-    set +x
 done
+
+set +x
