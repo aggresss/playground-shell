@@ -11,6 +11,10 @@ tc qdisc del dev ${DOWN_LINK} handle ffff: ingress
 tc qdisc del dev ${UP_LINK} root
 tc qdisc del dev ${DOWN_LINK} root
 
+if [ $1 == "clean" ]; then
+    exit 0
+fi
+
 ip link add dev ${UP_LINK} type ifb >/dev/null 2>&1
 ip link set dev ${UP_LINK} up
 
