@@ -31,11 +31,11 @@ tc class add dev ${DOWN_LINK} parent 1: classid 1:1 htb rate 1Gbit quantum 10000
 
 ########
 
-tc class add dev ${UP_LINK} parent 1:1 classid 1:10 htb rate 10mbit
+tc class add dev ${UP_LINK} parent 1:1 classid 1:10 htb rate 100mbit
 tc qdisc add dev ${UP_LINK} parent 1:10 handle 10: sfq perturb 10
 tc filter add dev ${UP_LINK} protocol ip parent 1: prio 1 u32 match ip dport 22 0xffff flowid 1:10
 
-tc class add dev ${DOWN_LINK} parent 1:1 classid 1:10 htb rate 10mbit
+tc class add dev ${DOWN_LINK} parent 1:1 classid 1:10 htb rate 100mbit
 tc qdisc add dev ${DOWN_LINK} parent 1:10 handle 10: sfq perturb 10
 tc filter add dev ${DOWN_LINK} protocol ip parent 1: prio 1 u32 match ip sport 22 0xffff flowid 1:10
 
