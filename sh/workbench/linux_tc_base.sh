@@ -11,7 +11,7 @@ tc qdisc del dev ${DOWN_LINK} handle ffff: ingress
 tc qdisc del dev ${UP_LINK} root
 tc qdisc del dev ${DOWN_LINK} root
 
-if [ $1 == "clean" ]; then
+if [ X_$1 == "X_clean" ]; then
     exit 0
 fi
 
