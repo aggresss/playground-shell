@@ -4,6 +4,8 @@
 # enp2s0 -> internal
 #
 
+set -x
+
 export UP_LINK="ifb0"
 export DOWN_LINK="enp2s0"
 
