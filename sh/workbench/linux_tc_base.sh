@@ -6,8 +6,8 @@
 
 set -x
 
-export UP_LINK="ifb0"
-export DOWN_LINK="enp2s0"
+UP_LINK="ifb0"
+DOWN_LINK="enp2s0"
 
 tc qdisc del dev ${DOWN_LINK} handle ffff: ingress
 tc qdisc del dev ${UP_LINK} root
