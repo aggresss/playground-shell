@@ -32,7 +32,7 @@ find . -type f -iname "*.wav" | while read -r input_file; do
     mkdir -p "$(dirname "$output_file")"
 
     # Execute conversion command
-    ffmpeg -i "$input_file" -map_metadata -1 -fflags bitexact -ac 1 -ar 16000 -b:a 512k -y "$output_file"
+    ffmpeg -i "$input_file" -map_metadata -1 -fflags +bitexact -c:a pcm_s16le -ac 1 -ar 16000 -b:a 512k -y "$output_file"
 
     echo "Converted: $input_file → $output_file"
 done
