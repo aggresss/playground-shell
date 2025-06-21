@@ -26,7 +26,7 @@ pushd "$INPUT_DIR" > /dev/null || exit 1
 # Process all .wav files in directory and subdirectories
 find . -type f -iname "*.wav" | while read -r input_file; do
     # Generate output path (preserving relative directory structure)
-    output_file=$(echo $INPUT_DIR/$OUTPUT_DIR/${input_file#./} | tr \'[:upper:]\' \'[:lower:]\')
+    output_file=$(echo "$INPUT_DIR/$OUTPUT_DIR/${input_file#./}" | tr '[:upper:]' '[:lower:]')
 
     # Create directory structure for output file
     mkdir -p "$(dirname "$output_file")"
